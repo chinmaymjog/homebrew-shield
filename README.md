@@ -1,33 +1,27 @@
 # homebrew-shield
 
-Homebrew tap for sourceguard-shield (brew install mydemoorg/sourceguard1/homebrew-shield/shield)
+Homebrew tap for [SourceGuard Shield](https://gitlab.com/mydemoorg/sourceguard1/shield-go),
+a git pre-commit hook that scans staged changes for secrets (gitleaks +
+trufflehog) before they're committed.
 
-## Getting started
+The `Formula/shield.rb` file in this repo is generated and pushed
+automatically by [goreleaser](https://goreleaser.com) whenever a new tag is
+released from the [shield-go](https://gitlab.com/mydemoorg/sourceguard1/shield-go)
+repo. Don't hand-edit it — changes will be overwritten on the next release.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Install
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/mydemoorg/sourceguard1/SourceGuard.git
-git branch -M main
-git push -uf origin main
+```sh
+brew tap mydemoorg/sourceguard1/homebrew-shield https://gitlab.com/mydemoorg/sourceguard1/homebrew-shield
+brew install mydemoorg/sourceguard1/homebrew-shield/shield
 ```
 
-## Integrate with your tools
+## Upgrade / uninstall
 
-* [Set up project integrations](https://gitlab.com/mydemoorg/sourceguard1/SourceGuard/-/settings/integrations)
-
-## Collaborate with your team
-
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
+```sh
+brew upgrade shield
+brew uninstall shield
+```
 * [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
 * [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
 * [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
