@@ -5,21 +5,21 @@
 class Shield < Formula
   desc "Local git pre-commit secret scanning (gitleaks + trufflehog), installed once per machine."
   homepage "https://github.com/chinmaymjog/shield-go"
-  version "0.1.2"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.1.2/shield_0.1.2_darwin_amd64.tar.gz"
-      sha256 "7cfc9a78fbcd90647d6f326d9b037e586991805b1cf229ae0c03637b42492633"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_darwin_amd64.tar.gz"
+      sha256 "87ff4893284b071b853267848a28f43f6f932f5146d370a6c372019cc6a4db54"
 
       define_method(:install) do
         bin.install "shield"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.1.2/shield_0.1.2_darwin_arm64.tar.gz"
-      sha256 "fdad065ebb0a9080c5509725895519f1619d793d0885d29256cd366d2653a7aa"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_darwin_arm64.tar.gz"
+      sha256 "04f2e8bdf7ab329caf472f9a3f6ea267840f0257aa98b752ce234324b04137e0"
 
       define_method(:install) do
         bin.install "shield"
@@ -29,19 +29,27 @@ class Shield < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.1.2/shield_0.1.2_linux_amd64.tar.gz"
-      sha256 "ed864193e3dafc8e9b7ea86b10039d03f2ddc7f475c0194db1e7182a20d0686c"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_linux_amd64.tar.gz"
+      sha256 "ad6f7a9ac9c4047dd3edd6bb6e54bfe155abaa67d2b109c42ef39984de852b0e"
       define_method(:install) do
         bin.install "shield"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.1.2/shield_0.1.2_linux_arm64.tar.gz"
-      sha256 "62ac57b01e54ca4dcc868fcf47cb1a6a657fc0cecca3974178d7b457c95bd83b"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_linux_arm64.tar.gz"
+      sha256 "979930eb443f3b304bf0184bf7bb6a3e59459d11f838b371404a24ebb51f3dbc"
       define_method(:install) do
         bin.install "shield"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      Run `shield install` to activate the pre-commit hook (sets git's
+      global core.hooksPath — covers every repo on this machine).
+      Run `shield uninstall` before `brew uninstall` to reverse it.
+    EOS
   end
 
   test do
