@@ -1,19 +1,19 @@
 # homebrew-shield
 
-Homebrew tap for [SourceGuard Shield](https://gitlab.com/mydemoorg/sourceguard1/shield-go),
+Homebrew tap for [SourceGuard Shield](https://github.com/chinmaymjog/shield-go),
 a git pre-commit hook that scans staged changes for secrets (gitleaks +
 trufflehog) before they're committed.
 
 The `Formula/shield.rb` file in this repo is generated and pushed
 automatically by [goreleaser](https://goreleaser.com) whenever a new tag is
-released from the [shield-go](https://gitlab.com/mydemoorg/sourceguard1/shield-go)
+released from the [shield-go](https://github.com/chinmaymjog/shield-go)
 repo. Don't hand-edit it — changes will be overwritten on the next release.
 
 ## Install
 
 ```sh
-brew tap mydemoorg/sourceguard1/homebrew-shield https://gitlab.com/mydemoorg/sourceguard1/homebrew-shield
-brew install mydemoorg/sourceguard1/homebrew-shield/shield
+brew tap chinmaymjog/homebrew-shield
+brew install chinmaymjog/homebrew-shield/shield
 ```
 
 ## Upgrade / uninstall
@@ -22,21 +22,6 @@ brew install mydemoorg/sourceguard1/homebrew-shield/shield
 brew upgrade shield
 brew uninstall shield
 ```
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
-
-***
 
 # Editing this README
 
