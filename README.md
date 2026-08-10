@@ -13,6 +13,7 @@ repo. Don't hand-edit it — changes will be overwritten on the next release.
 
 ```sh
 brew tap chinmaymjog/homebrew-shield
+brew trust chinmaymjog/homebrew-shield  # one-time, newer Homebrew versions require this for new taps
 brew install chinmaymjog/homebrew-shield/shield
 ```
 
