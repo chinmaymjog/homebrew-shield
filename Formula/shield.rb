@@ -5,21 +5,21 @@
 class Shield < Formula
   desc "Local git pre-commit secret scanning (gitleaks + trufflehog), installed once per machine."
   homepage "https://github.com/chinmaymjog/shield-go"
-  version "0.2.0"
+  version "0.2.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_darwin_amd64.tar.gz"
-      sha256 "87ff4893284b071b853267848a28f43f6f932f5146d370a6c372019cc6a4db54"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.1/shield_0.2.1_darwin_amd64.tar.gz"
+      sha256 "47d991ec9c39cb4bab905bc0983b34e3fd55a8bf8ef80ced3cfa5a6b1b0f2def"
 
       define_method(:install) do
         bin.install "shield"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_darwin_arm64.tar.gz"
-      sha256 "04f2e8bdf7ab329caf472f9a3f6ea267840f0257aa98b752ce234324b04137e0"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.1/shield_0.2.1_darwin_arm64.tar.gz"
+      sha256 "f096b5cdb654d92b7e72b4e1ee3c1b2f513fb72b7548f5f30d0e4041bc0003b4"
 
       define_method(:install) do
         bin.install "shield"
@@ -29,15 +29,15 @@ class Shield < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_linux_amd64.tar.gz"
-      sha256 "ad6f7a9ac9c4047dd3edd6bb6e54bfe155abaa67d2b109c42ef39984de852b0e"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.1/shield_0.2.1_linux_amd64.tar.gz"
+      sha256 "0b8a4c9611a2d2b2b3715ef93dbec89ef68fecc796e831102b16a8141f46b905"
       define_method(:install) do
         bin.install "shield"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.0/shield_0.2.0_linux_arm64.tar.gz"
-      sha256 "979930eb443f3b304bf0184bf7bb6a3e59459d11f838b371404a24ebb51f3dbc"
+      url "https://github.com/chinmaymjog/shield-go/releases/download/v0.2.1/shield_0.2.1_linux_arm64.tar.gz"
+      sha256 "52574773b93b0a4ec6f08aad1a4ba78144b0904ac1186e6edf919ce1cc23aafa"
       define_method(:install) do
         bin.install "shield"
       end
