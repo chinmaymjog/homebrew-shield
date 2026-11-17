@@ -1,0 +1,66 @@
+name: End-to-end
+
+# Installs the formula from this checkout as a real tap on clean macOS and
+# Linux runners (the runner is the disposable environment), then runs the
+# installed binary. Catches a broken formula, a wrong checksum or a missing
+# release asset. Also runs weekly because the release assets live in another
+# repo. No secrets. Not a required check: path-filtered on PRs.
+#
+# The formula is rewritten by goreleaser with direct pushes to main, so PR runs
+# are rare; the weekly run is the one that matters.
+on:
+  pull_request:
+    paths:
+      - Formula/**
+      - .github/workflows/e2e.yml
+  schedule:
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    name: brew install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+      HOMEBREW_NO_ANALYTICS: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Put Homebrew on PATH (Linux)
+        if: runner.os == 'Linux'
+        run: echo "/home/linuxbrew/.linuxbrew/bin" >> "$GITHUB_PATH"
+      - name: Tap this checkout
+        run: |
+          brew tap chinmaymjog/homebrew-shield "$GITHUB_WORKSPACE"
+          brew trust chinmaymjog/homebrew-shield || true
+      - name: Install
+        run: brew install chinmaymjog/homebrew-shield/shield
+      - name: Run installed binary
+        run: |
+          shield version
+          command -v shield
+      - name: brew test
+        run: brew test chinmaymjog/homebrew-shield/shield
+      - name: Hook install and uninstall (isolated)
+        run: |
+          export HOME="$RUNNER_TEMP/home" SOURCEGUARD_SHIELD_HOME="$RUNNER_TEMP/home/.sourceguard-shield"
+          mkdir -p "$HOME"
+          shield install
+          test -n "$(git config --global core.hooksPath)"
+          shield uninstall
+          ! git config --global core.hooksPath
